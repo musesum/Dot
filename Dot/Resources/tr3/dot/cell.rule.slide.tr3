@@ -1,0 +1,12 @@
+dot.cell.rule.slide : _cellRule {
+    base {
+        title : "Slide Bit Planes"
+        icon  : "cell.rule.slide.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.slide.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.slide.on
+        plane.value   : (0...23=0) <-> sky.cell.rule.slide.mix.plane
+        version.value : (1...4=1)  <-> sky.cell.rule.slide.version
+    }
+}

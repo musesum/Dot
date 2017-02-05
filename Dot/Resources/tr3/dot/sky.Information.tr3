@@ -1,0 +1,8 @@
+dot.information {
+    base {
+        type  : "info"
+        title : "Information"
+        icon  : "Information.png"
+    }
+    html : "html/info.html"
+}

@@ -1,0 +1,12 @@
+dot.cell.rule.pixsort : _cellRule {
+    base {
+        title : "Pixsort"
+        icon  : "cell.rule.pixsort.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.pixsort.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.pixsort.on
+        plane.value   : (0...23=0) <-> sky.cell.rule.pixsort.mix.plane
+        version.value : (0...1=1)  <-> sky.cell.rule.pixsort.version
+    }
+}

@@ -1,0 +1,12 @@
+dot.cell.rule.zhabatinski : _cellRule {
+    base {
+        title : "Zhabatinski"
+        icon  : "cell.rule.zhabatinski.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.zhabatinski.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.zhabatinski.on
+        plane.value   : (0...23=4) <-> sky.cell.rule.zhabatinski.mix.plane
+        version.value : (1...4=2)  <-> sky.cell.rule.zhabatinski.version
+    }
+}

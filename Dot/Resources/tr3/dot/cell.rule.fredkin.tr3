@@ -1,0 +1,12 @@
+dot.cell.rule.fredkin : _cellRule {
+    base {
+        title : "Fredkin"
+        icon  : "cell.rule.fredkin.png"
+    }
+    controls {
+        ruleOn.icon   : :"cell.rule.fredkin.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.fredkin.on
+        plane.value   : (0...23=0) <-> sky.cell.rule.fredkin.mix.plane
+        version.value : (1...4=1)  <-> sky.cell.rule.fredkin.version
+    }
+}

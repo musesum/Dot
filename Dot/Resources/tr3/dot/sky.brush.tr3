@@ -1,0 +1,46 @@
+dot.cell.brush {
+    
+    base {
+        type  : "brush"
+        title : "Brush"
+        frame : (x:0 w:0 w:320 h:168)
+        icon  : "sky.brush.png"
+    }
+    controls {
+        
+        fillZero {
+            type  : "button"
+            title : "clear 0"
+            frame : (x:4 y:50 w:44 h:44)
+            icon  : "dot.drop.clear.png"
+            value : (0...1=0) -> cell.rule.zero
+        }
+        palScrub  {
+            type  : "slider"
+            title : "Scrub Palette"
+            frame : (x:64 y:50 w:192 h:44)
+            value : (0...1=0) <-> draw.brush.index
+        }
+        fillOne {
+            type  : "button"
+            title : "clear 0xFFFF"
+            frame : (x:266 y:50 w:44 h:44)
+            icon  : "dot.drop.gray.png"
+            value : (0...1=0) -> cell.rule.one
+        }
+        brushPress {
+            type  : "button"
+            title : "Pressure"
+            frame : (x:10 y:108 w:66 h:44)
+            icon  : "dot.pen.press.png"
+            value : (0...1=0) <-> draw.brush.press
+        }
+        brushSize  {
+            type  : "slider"
+            title : "Size"
+            frame : (x:86 y:108 w:206 h:44)
+            value : (0...1=0) <- draw.brush.size -> menu^brushPress.position:0
+        }
+    }
+}
+

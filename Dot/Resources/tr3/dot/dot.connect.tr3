@@ -1,0 +1,6 @@
+dot {
+    cell.rule^ruleOn.value <- (controls^value ? 1 | cell.rule^ruleOn.value ? 0)
+    shader^ruleOn.value    <- (controls^value ? 1 | shader^ruleOn.value ? 0)
+    pal^ruleOn.value       <- (controls^value ? 1 | pal^ruleOn.value ? 0)
+}
+

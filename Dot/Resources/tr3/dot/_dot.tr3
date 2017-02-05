@@ -1,0 +1,28 @@
+dot._dot {
+
+    base {
+        type  : "unknown"
+        title : "Unknown"
+        frame : (x:0 y:0 w:320 h:176)
+        icon  : "dot.ring.white.png"
+    }
+    controls {
+        
+        ruleOn  {
+            type  : "button"
+            title : "Active"
+            frame : (x:266 y:6 w:48 h:32)
+            lag   : 0
+            value : (0...1) <- (controls^value ? 1)
+        }
+        changed {
+            type  : "twist"
+            title : "Changed"
+            frame : (x:10 y:52 w:44 h:44)
+            icon  : (off:"dot.flip.original.png" on:"dot.flip.delta.png")
+            lag   : 0
+            value : (0...1)
+        }
+    }
+    on <-> controls.ruleOn.value
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>info</title>
+        <meta name="viewport" content="width=320; initial-scale=1.0; minimum-scale=1, maximum-scale=1.0; user-scalable=1;">
+            <style type="text/css" media="screen">
+                td style {
+                    vertical-align: top;
+                }
+            a {
+                text-decoration: none;
+                color: #FFBB00;
+            }
+            
+            body {
+                margin: 5%;
+                font-family: "HelveticaNeue-Light";
+                color: #FFFFFF;
+            }
+            title {
+                font-family: "HelveticaNeue";
+                font-size: 14pt;
+            }
+            bar {
+                font-family: "HelveticaNeue-Light";
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+            body[orient="landscape"] bar {
+                height: 30px;
+                font-size: 16pt;
+            }
+            body[orient="profile"] bar {
+                height: 40px;
+                font-size: 30pt;
+            }
+            center {
+                position: absolute;
+                top: 30px;
+                bottom: 30px;
+            }
+            
+                </style>
+            <script type="application/x-javascript">
+                
+                addEventListener("load", function() {
+                                 setTimeout(updateLayout, 0);
+                                 decorate();
+                                 }, false);
+                                 
+                                 var currentWidth = 0;
+                                 
+                                 function updateLayout() {
+                                     if (window.innerWidth != currentWidth) {
+                                         currentWidth = window.innerWidth;
+                                         
+                                         var orient = currentWidth == 320 ? "profile" : "landscape";
+                                         document.body.setAttribute("orient", orient);
+                                         setTimeout(function()
+                                                    {
+                                                    window.scrollTo(0, 1);
+                                                    }, 100);
+                                     }
+                                 }
+            function createAnchor(href) {
+                var anchor = document.createElement('a');
+                anchor.href = href;
+                return anchor;
+            }
+            function createImg(png,width) {
+                var img = document.createElement('img');
+                img.src = png + '.png';
+                img.alt = "";
+                img.style.width = width;
+                img.style.border = '0px';
+                return img;
+            }
+            function getName(entry) {
+                try {
+                    ico = entry.getElementsByTagName('icon')[0];
+                    child = ico.lastChild;
+                    icoName = child.nodeValue;
+                } catch (e) {
+                    icoName = 'null';
+                }
+                return icoName;
+            }
+            function decorater(tag,size,align) {
+                
+                var entries = document.getElementsByTagName(tag);
+                
+                for (var i=0; i<entries.length; i++) {
+                
+                    var entry = entries[i];
+                    var icoName = getName(entry);
+                    var img = createImg(icoName,size);
+                    img.align = align;
+                    img.hspace= '6';
+                    
+                    ico = entry.getElementsByTagName('icon')[0];
+                    child = ico.firstChild;
+                    entry.replaceChild(img,ico);
+                }
+            }
+            function decorate() {
+                decorater('entry','64px','center');
+                decorater('entry3','256px','center');
+                decorater('entry4','128px','Center');
+            }
+            </script>
+            </head>
+    <body>
+        
+        <bar></bar>
+        <center>
+            <table>
+                <tr><td><entry><icon>Pyr_640</icon><title>Pyr for visual music<br><br></title><body> This is a sneak preview made available for the Punto y Raya festival 2014 held in Reykjavik Iceland.<b><br><br></body></entry></td></tr>
+                <tr><td><entry2><body>For a demo and ongoing tutorials on how to use the Pyr app, tap on this link to go to the <a href="http://www.youtube.com/channel/UCegq60ACUJyl1YGVbAI1tmg">Pyr YouTube channel</a><br><br></body></entry2></td></tr>
+                <tr><td><entry><icon>dot.ring.roygbiv.png</icon><title>Ring<br><br></title><body>Tap to expand your choices. Double-tap clear or reset. Tap-and-hold to change parameter. When you rotate the device, the ring always stays on the same side as the home button, so you can use in your favorite orientation.<br><br></body></entry></td></tr>
+                <tr><td><entry3><icon>Dock_640</icon><body><br><br>Drag the ring towards a dot to make an easier target. The current dot is highlighted and will tuck into the ring. Drag a dot away from the Dock to remove it. Drag a dot left or right to change its position. <br><br></body></entry3></td></tr>
+                <tr><td><entry><icon>Plus_128</icon><title>Plus<br></title><body>Pick new dots to put on the dock. Pyr comes with some standard dots plus a "Placemark" which is where Pyr was when you last left the app. Selecting a dot will activate it and add it to the dock.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Palette_128</icon><title>Palette<br><br></title></entry></td></tr>
+                <tr><td><entry3><icon>PaletteChild_640</icon><body><br><br>Choose between two palettes and "Cross Fade" between them. "Scrub" back and forth and select a brush "Index" to finger paint with. Tap an arrow to palette cycle. Double-tap the scrub area to reset. The "Bit Plane" slider choose which part of the artificial life universe to show.<br><br><br></body></entry3></td></tr>
+                <tr><td><entry2><title>Artificial Life<br><br></title><body>The Add, Ave, Drift, Fredkin, Gas, Melt, Slide, and Zha rules use a form of artificial life, called cellur automata, to create animated effects. Your screen observes a miniature 2 dimensional universe of a quarter million cells. Each cell compares itself to its neighbor to decide how to change. The Universe of each cell has 32 bits deep, of which 8 can seen at a time. Tap to select a rule. Double-tap to clear the universe.<br><br></body></entry2></td></tr>
+                <tr><td><entry3><icon>RuleChild_640</icon><body><br><br>Tap-and-hold to bring up a palette of the current rule's parameters. Each rule has a version that can change how it works. In addition to the color "Scrub", "Index" and "Brush Size" sliders, there is a "Bit Plane" slider slides an 8 bit window upon a 32 bit universe. If nothing seems to be happening, try moving the Bit Plane slider to explore.<br><br></body></entry3></td></tr>
+                <tr><td><entry><icon>Add_128</icon><title>Add Rule<br><br></title><body>This is the simplest of artificial life rules. At the bottom is a simple draw layer. One version simple persists while another fades out. For each frame, the bottom layer is added to the upper layers, which can have a marque effect.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Ave_128</icon><title>Average Rule<br><br></title><body>Every cell takes the average of its neighbor. After a while, the whole canvas averages out to a grey goo. Slide to the left to see the most detail. Sometimes, when finger painting, the canvas will average out to the same color as the brush, which behaves as though nothing is happing. In that case, tap the Zero to erase the canvas.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Drift_128</icon><title>Drift Rule<br></title><body><br>Genetic Drift rule spreads outward. Works well with a blank canvas that you seed with a touch or notes. The results often work well when switching to the Slider rule.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Fredkin_128</icon><title>Fredkin Rule<br><br></title><body>Fredkin produces the most subtle effects with a single cell brush size or with drawn rectangles. After a while pattern spreads out to the edge of the universe and reverses itself.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Gas_128</icon><title>Gas Rule<br></title><body><br>Not really a gas model; more of catch all. One version rotates around itself.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Melt_128</icon><title>Melt Rule<br></title><body>Warning: this rule can flash! Melt uses Reaction Diffusion and Lapacian effects. Sliding through the different bit planes can look like noise at the shallow end or may may reveal a shape as you go deeper. Or vice versa: what looks washed out may reveal great detail when sliding left for more detail.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Slide_128</icon><title>Slide Rule<br></title><body>Each of first 8 layers shifts in different direction. After a while each layer will have shifted all the way through the micro universe and converge back to the starting place.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Time_128</icon><title>Timetunnel Rule<br></title><body>Warning: this rule can flash! Interesting effects with single cell, squares, and dialing to different layers. Finger painting with a big brush will leave behind a trail.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Zha_128</icon><title>Zhabatinski Rule<br></title><body>Warning: this rule will definitely flash until it has filled up the universe with whorls.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>OSC_128</icon><title>Open Sound Control<br></title><body>Pyr accepts Open Sound Control messages.<br><br></body></entry></td></tr>
+                <tr><td><entry><icon>Tile_128</icon><title>Tile Shader</title</td></tr>
+                <tr><td><entry3><icon>TileChild_640</icon><body><br><br>The Tile shader takes the cellular universe and repeats it horizonally and/or vertically. You can also shift the universe left right up and down. Double-tap in "Repeat", "Shift", or "Mirror" boxes to animate the cursor to the nearest corner, center or edge.<br><br></body></entry3></td></tr>
+                <tr><td><entry><icon>Weave_128</icon><title>Weave Shader<br><br></title></entry></td></tr>
+                <tr><td><entry3><icon>Weave_640</icon><body><br><br>The Weave shader takes the cellular universe and then shifts and divides the vertical and horizontal offset.  Double-tap in "Spread", "Divide", or "Shift" boxes to animate the cursor to the nearest corner, center or edge. Double tap on the Weave dot to reset.<br><br>Weave was inspired by early digital video that was too slow to record a whole frame at a time, so it would alternate even and odd scan lines. The result were "jaggies" for fast moving objects. Many tried tirelessly to smooth out those jaggies. Now, with progressive video it's all ancient history. Until now; Weave brings the jaggies back!<br><br><br></body></entry3></td></tr>
+                <tr><td><entry><icon>Info_128</icon><title>Information<br><br></title><body>If you're curious about what comes after Pyr, then <a href="mailto:info@muse.com?subject=Let me know about Pyr">drop me a line.</a><br><br></body></entry></td></tr>
+            </table>
+        </center>
+    </body>
+</html>

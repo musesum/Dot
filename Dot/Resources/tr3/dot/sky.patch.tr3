@@ -1,0 +1,25 @@
+dot.patch {
+    base {
+        type  : "patch"
+        title : "Patches"
+        frame : (x:0 y:0 w:270 h:226)
+        icon  : "dot.patch.png"
+    }
+    controls {
+        
+        ruleOn  {
+            type  : "button"
+            title : "Active"
+            frame : (x:216 y:6 w:48 h:32)
+            icon  : "dot.patch.png"
+            value : (0...1) <- (controls^value ? 1)
+        }
+        changed {
+            type  : "twist"
+            title : "Changed"
+            frame : (x:10 y:52 w:56 h:44)
+            icon  : (off:"dot.flip.original.png" on:"dot.flip.delta.png")
+            lag   : 0
+            value : (0...1)
+        }
+}

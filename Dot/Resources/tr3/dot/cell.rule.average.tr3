@@ -1,0 +1,12 @@
+dot.cell.rule.average : _cellRule {
+    base {
+        title : "Average"
+        icon  : "cell.rule.average.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.average.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.average.on
+        plane.value   : (0...23=0) <-> sky.cell.rule.average.mix.plane
+        version.value : (1...4=1)  <-> sky.cell.rule.average.version
+    }
+}

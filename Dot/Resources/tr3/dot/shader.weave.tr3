@@ -1,0 +1,89 @@
+dot.shader.weave {
+    base {
+        type    : "shader"
+        title   : "Weave"
+        frame   : (x:0 y:0 w:312 h:202)
+        icon    : "shader.weave.png"
+    }
+    controls {
+        ruleOn {
+            type    : "button"
+            title   : "Active"
+            frame   : (x:246 y:6 w: 48 h:32)
+            icon    : "shader.weave.png"
+            value   : (0...1)
+        }
+       spreadBox {
+            type    : "box"
+            frame   : (x:16 y:52 w:128 h:128)
+            radius  : 10
+            tap2    : (-1 -1)
+            lag     : 1.5
+            value   : (0 0):(0...1=0) <-> shader.uniform.spread
+        }
+        divideBox {
+            type    : "box"
+            frame   : (x:160 y:52 w:128 h:128)
+            radius  : 10
+            tap2    : (-1 -1)
+            lag     : 1.5
+            value   : (0 0):(0...1) <-> shader.uniform.divide
+        }
+    }
+    shader {
+        
+        uniform {
+            fade   : (0...1=0)
+            spread : (x y):(0...1=0)
+            divide : (x y):(0...1=0)
+        }
+        fragment(){
+            precision highp float;
+            varying highp vec2 vTexCoord;
+            uniform sampler2D drawBuf;
+            uniform sampler2D drawPal;
+            uniform sampler2D camBuf;
+            uniform sampler2D camPal;
+            
+            uniform float fade;
+            uniform vec2 divide;
+            uniform vec2 spread;
+
+            
+            #define Mono(m)((m.r+m.g+m.b)/3.)
+            #define tx vTexCoord.x
+            #define ty vTexCoord.y
+            
+            void main () {
+                #define height (1080./4.)
+                #define width (1920./4.)
+                float diviH = spread.y * height / 2.; //float divi2 = divisions/2.;
+                float diviW = spread.x * width / 2.; //float divi2 = divisions/2.;
+                float ysign = (ty==.0 ? -1. : -sign(.5-fract(ty*diviH)));
+                float xsign = (tx==.0 ? -1. : -sign(.5-fract(tx*diviW)));
+                float txi = fract(tx + ysign*(1.-divide.x)/24.); //float txi = frac(tx + ysign*interleave);
+                float tyi = fract(ty + xsign*(1.-divide.y)/8.); //float txi = frac(tx + ysign*interleave);
+                
+                vec4 pixel = texture2D(drawBuf,vec2(txi,tyi));
+                float fadeInverse = 1.-fade;
+                float pixelFade = pixel.r*fadeInverse + pixel.b*fade;
+                
+                vec4 drawColor = texture2D(drawPal, vec2(pixelFade,0.));
+                gl_FragColor = vec4(drawColor.r, drawColor.g, drawColor.b, 1.);
+            }
+
+        }
+        vertex(){
+            attribute vec4 aPosition;
+            attribute vec2 aTexCoord;
+            varying vec2 vTexCoord;
+            
+            void main() {
+                
+                gl_Position = aPosition;
+                vTexCoord = aTexCoord;
+                
+            }
+        }
+    }
+}

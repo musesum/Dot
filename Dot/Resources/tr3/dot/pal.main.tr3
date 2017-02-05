@@ -1,0 +1,63 @@
+dot.pal.main {
+    base {
+        type  : "palette"
+        title : "Palette"
+        frame : (x:0 y:0 w:320 h:176)
+        icon  : "sky.pal.main.png"
+    }
+    controls {
+        
+        ruleOn  {
+            type  : "button"
+            title : "Active"
+            frame : (x:266 y:6 w: 48 h:32)
+            icon  : "sky.pal.main.png"
+            lag   : 0
+            value : 0 
+        }
+        fillZero {
+            type  : "button"
+            title : "fill 0"
+            frame : (x:10 y:50 w:44 h:44)
+            icon  : "dot.drop.clear.png"
+            value : (0...1=0) -> sky.cell.rule.zero
+        }
+        palFade  {
+            type  : "slider"
+            title : "Pal A <-> B"
+            icon  : "sky.pearl.white.png"
+            frame : (x:64 y:50 w:192 h:44)
+            lag   : .25
+            value : (0...1=0) <-> sky.pal.change.xfade
+        }
+        fillOne {
+            type  : "button"
+            title : "fill 1"
+            frame : (x:260 y:50 w:44 h:44)
+            icon  : "dot.drop.gray.png"
+            value : (0...1=0) -> sky.cell.rule.one
+        }
+        
+        shiftLeft {
+            type  : "button"
+            title : "Shift Left"
+            frame : (x:10 y:108 w:44 h:44)
+            icon  : "dot.arrow.left.png"
+            value : (0...1=0) -> sky.pal.cycle.inc:(--)
+        }
+        palScrub  {
+            type  : "slider"
+            title : "Scrub Palette"
+            icon  : "sky.brush.png"
+            frame : (x:64 y:108 w:192 h:44)
+            value : (0...1=0) <-> sky.pal.ofs
+        }
+        shiftRight {
+            type  : "button"
+            title : "Shift Right"
+            frame : (x:260 y:108 w:44 h:44)
+            icon  : "dot.arrow.right.png"
+            value : (0...1=0)  -> sky.pal.cycle.inc:(++)
+        }
+    }
+}

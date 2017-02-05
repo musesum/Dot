@@ -1,0 +1,42 @@
+dot.cell.shift : _dot {
+    base {
+        type  : "cell"
+        title : "Shift"
+        frame : (x:0 y:0 w:270 h:226)
+        icon  : "dot.shift.png"
+    }
+    controls {
+        
+        ruleOn  {
+            frame : (x:216 y:6 w:48 h:32)
+            icon  : "dot.shift.png"
+        }
+        shiftBox {
+            type   : "box"
+            title  : "Screen Shift"
+            frame  : (x:86 y:52 w:128 h:128)
+            radius : 10
+            tap2   : (-1 -1)
+            lag    : .5
+            value  : (.5 .5):(0...1) <-> screen.shift.fake.add
+            master : (0...1)         <- (value ? 1)
+        }
+        brushTilt {
+            type  : "button"
+            title : "Brush Tilt"
+            frame : (x:10 y:112 w:66 h:44)
+            icon  : "dot.pen.tilt.png"
+            value : (0...1) <-> draw.brush.tilt
+        }
+        accelTilt  {
+            type  : "button"
+            title : "Accelerometer Tilt"
+            frame : (x:10 y:172 w:66 h:44)
+            icon  : "dot.shift.png"
+            value : (0...1) <-> input.accel.on
+        }
+        shiftBox.master : 0 <- (brushTilt.value ? 0 | accelTilt.value ? 0)
+        brushTilt.value : 0 <- (accelTilt.value ? 0 | shiftBox.value ? 0)
+        accelTilt.value : 0 <- (brushTilt.value ? 0 | shiftBox.value ? 0)
+    }
+}

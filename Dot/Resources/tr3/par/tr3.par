@@ -1,0 +1,51 @@
+root (_list+) _list (_cmt* _tr3)
+
+    path  ('^((([A-Za-z_][A-Za-z0-9_]*)*([.^*])+[A-Za-z0-9_.^*]*)+)') // a.b ..b
+    proto (":" '^((([A-Za-z_][A-Za-z0-9_]*)([.^*])?[A-Za-z0-9_.^*]*)+)') // :a :a.b
+    name  ('^(([A-Za-z_][A-Za-z0-9_]*))') // yo123
+    quote ('^\"([^\"]*)\"') // "yo"
+    num   ('^([+-]*[0-9]+[.][0-9]+|[+-]*[0-9]*[.][0-9]+|[+-]*[0-9]+)') // 1.2
+    array ('^\:?\[[ ]*([0-9]+)[ ]*\]') // [2]
+    _cmt  ('^[/][/][ ]*(.*?)[\r\n]+|^[ \r\n\t]+') // "// whatever"
+    script("()" '(?>\{(?:[^{}]*|(?R))*\})|\w+') // recursive source between outer {}
+
+_tr3 (_left+ _right*)
+
+    _left (path | name | quote) // a.b | a | "a b"
+    _right (many | child | proto | array | value | script | edges | _cmt)
+
+    many  (":" "{" _list+ "}" ) // {a b}:{yo oy} apply yo and oy to a and b
+    child (    "{" _list+ "}" ) // a{o oy} apply yo an oy to only a
+
+    value (":" (_scalar | tupple | quote))
+    value2     (_scalar | tupple | quote)
+
+        _scalar ("(" _scalar2 ")" | _scalar2)
+        _scalar2 (minMax | cycle | span | num | incr | decr | data)
+            minMax (num ("..." | "..") num ("=" num)?)
+            span   (num ("..<" | ".<") num ("=" num)?)
+            cycle  ("%" num ("=" num)?)
+            incr ("++")
+            decr ("--")
+            data ("*")
+
+    tupple ( "(" (nameVal+ | name+ | quote quote+ | _scalar+ | array+ ) ")" value*)
+            nameVal (name value)
+
+    edges (edgeOp (("(" edgeItem+ ")" edges?) | edgeItem) _cmt?)
+
+        edgeOp ('^([<][-?!\~>]+|[-?!\~]+[>])')
+        edgeItem ((_edgeLeft | ternary) _cmt?)
+        _edgeLeft (_left (edgePatch | value)?)
+
+            edgePatch (edges+)
+
+            ternary ("(" _tern ")" | _tern)
+
+                _tern    (ternIf "?" ternThen (":" ternElse)? ("|" ternSeg)?)
+                ternIf   (path | name)
+                ternThen (ternary | path | name | value2)
+                ternElse (ternary | path | name | value2)
+                ternSeg  (ternary)
+
+                

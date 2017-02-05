@@ -1,0 +1,52 @@
+sky.screen {
+    
+    realfake : (0...100=100)  // old pipeline?
+    
+    fade {real fake cross} : (0...1000=1000)
+    
+    luma {
+        size  : (0...12700=700)
+        black : (0...25600=0)
+        white : (0...25600=25600)
+    }
+    projector {
+        on      : (0...1=1)
+        width   : 1920
+        height  : 1080
+    }
+    
+    fullscreen  : (%2=1)
+    dispatch    : (0...1)
+    mode        : (0...1)
+    limit       : (%2)
+    type
+    
+    ogl {
+        mapping : (1...2=2)
+    }
+    face {rendertex automipmap reflection background foreground texture wireframe}:(%2)
+    face {set {background foreground wireframe texture}:(%2)}
+    face {univ {wrap : (%2=1)}}
+    
+    tile {
+        repeat : (x y):(0...1=0)
+        mirror : (x y):(%2)
+        divide : (x y):(0...10)
+        shift  : (x y):(0)
+        fade
+    }
+    weave {
+        divide : (x y):(0...1=0)
+        spread : (x y):(0...1=0)
+    }
+    
+    shift {real fake}:{
+        on      : (0...1=1)
+        changed : (0...1=0)
+        reverse : (%2)
+        sum     : (x y)
+        ofs     : (x y):(-16...16=0)
+        add     : (x y):(-16...16=0)
+    }
+    shift.fake.add <-(main.input.azimuth)
+}

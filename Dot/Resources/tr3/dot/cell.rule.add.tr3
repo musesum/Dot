@@ -1,0 +1,12 @@
+dot.cell.rule.add : _cellRule {
+    base {
+        title : "Add"
+        icon  : "cell.rule.add.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.add.png"
+        ruleOn.value  : (0...1=0) <-> sky.cell.rule.add.on
+        plane.value   : (0...1=0) <-> sky.cell.rule.add.mix.plane
+        version.value : (0...4=1) <-> sky.cell.rule.add.version
+    }
+}

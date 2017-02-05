@@ -1,0 +1,12 @@
+dot.cell.rule.modulo : _cellRule {
+    base {
+        title : "Modulo"
+        icon  : "cell.rule.modulo.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.modulo.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.modulo.on
+        plane.value   : (0...23=0) <-> sky.cell.rule.modulo.mix.plane
+        version.value : (1...6=2)  <-> sky.cell.rule.modulo.version
+    }
+}

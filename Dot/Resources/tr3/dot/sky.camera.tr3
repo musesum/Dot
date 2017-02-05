@@ -1,0 +1,7 @@
+dot.camera {
+    base {
+        type  : "camera"
+        title : "Camera"
+        icon  : "sky.camera.png"
+    }
+}

@@ -1,0 +1,12 @@
+dot.cell.rule.timetunnel : _cellRule {
+    base {
+        title : "Time Tunnel"
+        icon  : "cell.rule.timeTunnel.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.timeTunnel.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.timetunnel.on
+        plane.value   : (0...23=3) <-> sky.cell.rule.timetunnel.mix.plane
+        version.value : (1...8=6)  <-> sky.cell.rule.timetunnel.version
+    }
+}

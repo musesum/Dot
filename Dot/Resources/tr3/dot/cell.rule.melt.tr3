@@ -1,0 +1,12 @@
+dot.cell.rule.melt : _cellRule {
+    base {
+        title : "Melt"
+        icon  : "cell.rule.melt.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.melt.png"
+        ruleOn.value  : (0...1=0)  <-> sky.cell.rule.melt.on
+        plane.value   : (0...23=5) <-> sky.cell.rule.melt.mix.plane
+        version.value : (1...4=1)  <-> sky.cell.rule.melt.version
+    }
+}

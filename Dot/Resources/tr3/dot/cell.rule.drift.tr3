@@ -1,0 +1,12 @@
+dot.cell.rule.drift : _cellRule {
+    base {
+        title : "Drift"
+        icon  : "cell.rule.drift.png"
+    }
+    controls {
+        ruleOn.icon   : "cell.rule.drift.png"
+        ruleOn.value  : (0...1=0)   <-> sky.cell.rule.drift.on
+        plane.value   : (0...23=12) <-> sky.cell.rule.drift.mix.plane
+        version.value : (1...5=1)   <-> sky.cell.rule.drift.version
+    }
+}
