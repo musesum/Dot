@@ -99,8 +99,11 @@
     }
     
     for (Tr3* control : controls->children) {
-        
         Tr3* type = control->findChild("type");
+        if (type==nil) {
+            fprintf(stderr, "*** initControlsForTr3 control:%s No Type found",control->name.c_str());
+            return;
+        }
         char* typeVal = (char*)*type;
         NSLog(@"%s : %s", control->name.c_str(), typeVal);
         

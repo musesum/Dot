@@ -1,4 +1,4 @@
-dot.shader.tile : _dot {
+dot.shader.tile {
     base {
         type  : "shader"
         title : "Tile"
@@ -7,8 +7,11 @@ dot.shader.tile : _dot {
     }
     controls {
         ruleOn {
+            type  : "button"
+            title : "Active"
             frame : (x:166 y:6 w:48  h:32)
             icon  : "shader.tile.png"
+            value : (0...1)
         }
         mirrorBox {
             type   : "box"
@@ -28,7 +31,7 @@ dot.shader.tile : _dot {
             tap2   : (-1 -1)
             lag    : 0.5
             master : (0...1):1
-            value  : (0 0):(0...1) <-> shader.uniform.repeat
+            value  : (0 0):(0...1=0) <-> shader.uniform.repeat
         }
     }
     shader {
@@ -39,11 +42,11 @@ dot.shader.tile : _dot {
         }
         // fragment and vertext use openGL syntax
         fragment() {
-            precision mediump float;
-            varying highp vec2 vTexCoord;
             
-            uniform mediump sampler2D drawBuf; // 2D texture
-            uniform mediump sampler2D drawPal; // 256x1 color palette for texture
+            precision highp float;
+            varying highp vec2 vTexCoord;
+            uniform sampler2D drawBuf; // 2D texture
+            uniform sampler2D drawPal; // 256x1 color palette for texture
             
             uniform float fade; // fade key slider value
             uniform vec2 repeat;
@@ -76,16 +79,19 @@ dot.shader.tile : _dot {
                 vec4 falseColorR = texture2D(drawPal, vec2(realColor.r,0.));
                 
                 float fadeInverse = 1.0 - fade;
+                /*
                 gl_FragColor = vec4(falseColorR.r * fadeInverse + falseColorB.r * fade,
-                falseColorR.g * fadeInverse + falseColorB.g * fade,
-                falseColorR.b * fadeInverse + falseColorB.b * fade,
-                1.0);
+                                    falseColorR.g * fadeInverse + falseColorB.g * fade,
+                                    falseColorR.b * fadeInverse + falseColorB.b * fade, 1.0);
+                 */
+                gl_FragColor = texture2D(drawBuf, vTexCoord);
             }
         }
         vertex() {
-            attribute mediump vec4 aPosition;
-            attribute mediump vec2 aTexCoord;
-            varying mediump vec2 vTexCoord;
+            
+            attribute vec4 aPosition;
+            attribute vec2 aTexCoord;
+            varying vec2 vTexCoord;
             
             void main() {
                 gl_Position = aPosition;

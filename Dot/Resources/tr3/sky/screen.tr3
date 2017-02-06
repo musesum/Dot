@@ -28,18 +28,6 @@ sky.screen {
     face {set {background foreground wireframe texture}:(%2)}
     face {univ {wrap : (%2=1)}}
     
-    tile {
-        repeat : (x y):(0...1=0)
-        mirror : (x y):(%2)
-        divide : (x y):(0...10)
-        shift  : (x y):(0)
-        fade
-    }
-    weave {
-        divide : (x y):(0...1=0)
-        spread : (x y):(0...1=0)
-    }
-    
     shift {real fake}:{
         on      : (0...1=1)
         changed : (0...1=0)

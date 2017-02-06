@@ -42,13 +42,10 @@ dot.shader.weave {
             varying highp vec2 vTexCoord;
             uniform sampler2D drawBuf;
             uniform sampler2D drawPal;
-            uniform sampler2D camBuf;
-            uniform sampler2D camPal;
             
             uniform float fade;
             uniform vec2 divide;
             uniform vec2 spread;
-
             
             #define Mono(m)((m.r+m.g+m.b)/3.)
             #define tx vTexCoord.x
@@ -82,7 +79,6 @@ dot.shader.weave {
                 
                 gl_Position = aPosition;
                 vTexCoord = aTexCoord;
-                
             }
         }
     }
