@@ -13,18 +13,6 @@ using namespace std;
 
 @implementation SkyMain (Patch)
 
-#pragma mark - init
-
-+(SkyMain*) shared {
-    
-    static dispatch_once_t once;
-    static id shared;
-    dispatch_once(&once, ^{
-        shared = [self.alloc init];
-    });
-    return shared;
-}
-
 #pragma mark - File
 
 - (void)openPatchURL:(NSURL*)url {
@@ -361,10 +349,6 @@ using namespace std;
     else if (_videoManager.captureFlags & kDeviceCaptureCameraBack) {
         
         dock = [dock stringByAppendingString:@"cameraBack\n"];
-    }
-    if (self.dockLocked) {
-        
-        dock = [dock stringByAppendingString:@"dockLocked\n"];
     }
     for (MenuParent *button in menuDock.parents) {
         

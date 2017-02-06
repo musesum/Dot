@@ -1,8 +1,10 @@
 #import "AppDelegate.h"
 #import "SkyTr3Root.h"
+#import "SkyTr3.h"
 #import "SkyMain.h"
 #import "MenuDock.h"
 #import "MenuDock+Add.h"
+#import "MenuChild.h"
 #import "ScreenVC.h"
 #import "ScreenView.h"
 #import "VideoManager.h"
@@ -23,15 +25,16 @@
     
     SkyRoot = new Tr3("√");
     _screenVC = ScreenVC.shared; // init this first to setup OpenGL pipeline
+    _skyTr3   = SkyTr3.shared;
     _skyMain  = SkyMain.shared;
     _menuDock = MenuDock.shared;
     
     [_menuDock addSkyRoot:SkyRoot]; // will parse tr3 script that includes shaders
     [_screenVC initTr3Root:SkyRoot];
     [[ScreenView shared] updateShaderName:@"Tile"];
-    [_menuDock splashWithCompletion:^{_skyMain.skyActive=YES;}];
+    [_menuDock splashWithCompletion:^{_skyTr3.skyActive=YES;}];
     
-    [_skyMain openDotURL:[launchOptions valueForKey:@"UIApplicationLaunchOptionsURLKey"]];
+    [_skyTr3 openDotURL:[launchOptions valueForKey:@"UIApplicationLaunchOptionsURLKey"]];
     _videoManager = VideoManager.shared;
     
     // nav controller with main and alternate windows
@@ -58,9 +61,9 @@
     if ([URLString length] > maximumExpectedLength) {
         return NO;
     }
-    [_skyMain pushSkyActive:NO];
-    [_skyMain openDotURL:url];
-    [_skyMain setSkyActive:YES];
+    [_skyTr3 pushSkyActive:NO];
+    [_skyTr3 openDotURL:url];
+    [_skyTr3 setSkyActive:YES];
     return YES;
 }
 
@@ -71,7 +74,7 @@
     PrintAppDelegate("\nApplication Did Resign Active ");
     
     [_videoManager setActive:NO];
-    [_skyMain pushSkyActive:NO];
+    [_skyTr3 pushSkyActive:NO];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication*)application {
@@ -79,7 +82,7 @@
     PrintAppDelegate("\nApplication Did Become Active ");
     
     [_videoManager setActive:YES];
-    [_skyMain setSkyActive:YES];
+    [_skyTr3 setSkyActive:YES];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication*)application {
@@ -87,7 +90,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication*)application {
     
-    [_skyMain pushSkyActive:NO];
+    [_skyTr3 pushSkyActive:NO];
     //!! [_skyMain saveSystemPlacemark];
     [_videoManager setActive:NO];
 
@@ -99,7 +102,8 @@
     PrintAppDelegate(@"applicationWillEnterForeground");
 
     [_videoManager setActive:YES]; //!!
-    [_skyMain popSkyActive:YES];
+    [_skyTr3 popSkyActive:YES];
+    [MenuDock.shared.parentNow.menuChild refresh];
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application {

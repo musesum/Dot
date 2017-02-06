@@ -97,7 +97,7 @@
     }
     //TODO these were pulled from a delegate - put somewhere?
     [MenuDock.shared resetOrientation];
-    [SkyMain.shared setNeedsUpdate:YES];
+    ///???[SkyMain.shared setNeedsUpdate:YES];
 }
 
 @end

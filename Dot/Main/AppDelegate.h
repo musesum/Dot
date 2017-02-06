@@ -1,5 +1,6 @@
 #import "main.h"
 
+@class SkyTr3;
 @class SkyMain;
 @class ScreenVC;
 @class VideoManager;
@@ -9,6 +10,7 @@
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     
+    SkyTr3*         _skyTr3;
     SkyMain*        _skyMain;
     ScreenVC*       _screenVC;
     VideoManager*   _videoManager;
@@ -16,5 +18,6 @@
 }
 @property (strong) MuNavigationC* muNavC;
 @property (nonatomic,strong) UIWindow* window;
+
 @end
 

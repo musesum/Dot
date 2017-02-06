@@ -79,7 +79,6 @@
 		808701591D9F00EA00C1F26D /* ShaderUniform.m in Sources */ = {isa = PBXBuildFile; fileRef = 808700F01D9F00EA00C1F26D /* ShaderUniform.m */; };
 		8087015A1D9F00EA00C1F26D /* ShaderVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 808700F21D9F00EA00C1F26D /* ShaderVertex.m */; };
 		8087015B1D9F00EA00C1F26D /* TKColorTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 808700F41D9F00EA00C1F26D /* TKColorTextStorage.m */; };
-		8087015D1D9F00EA00C1F26D /* SkyMain+Patch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 808700FA1D9F00EA00C1F26D /* SkyMain+Patch.mm */; };
 		8087015E1D9F00EA00C1F26D /* SkyMain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 808700FC1D9F00EA00C1F26D /* SkyMain.mm */; };
 		808701601D9F00EA00C1F26D /* SoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 808701011D9F00EA00C1F26D /* SoundEffect.m */; };
 		808701611D9F00EA00C1F26D /* SysSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = 808701031D9F00EA00C1F26D /* SysSoundController.m */; };
@@ -159,6 +158,7 @@
 		808702C21D9F175D00C1F26D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 808702C11D9F175D00C1F26D /* libz.tbd */; };
 		808702C41D9F17B400C1F26D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808702C31D9F17B400C1F26D /* AssetsLibrary.framework */; };
 		808989CF1DA5632700200503 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808989CE1DA5632700200503 /* Images.xcassets */; };
+		808FB3E21E48E04900A81A90 /* SkyTr3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 808FB3E11E48E04900A81A90 /* SkyTr3.mm */; };
 		80B196021E464B2E00CB1DB2 /* Shader+Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B196011E464B2E00CB1DB2 /* Shader+Error.m */; };
 		80B196051E464C0E00CB1DB2 /* Shader+Compile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80B196041E464C0E00CB1DB2 /* Shader+Compile.mm */; };
 		80B196081E479E9800CB1DB2 /* Shader+Tr3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80B196071E479E9800CB1DB2 /* Shader+Tr3.mm */; };
@@ -600,6 +600,8 @@
 		808702C11D9F175D00C1F26D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		808702C31D9F17B400C1F26D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		808989CE1DA5632700200503 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Dot/Images.xcassets; sourceTree = "<group>"; };
+		808FB3E01E48E04900A81A90 /* SkyTr3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyTr3.h; sourceTree = "<group>"; };
+		808FB3E11E48E04900A81A90 /* SkyTr3.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SkyTr3.mm; sourceTree = "<group>"; };
 		8092E4F31D9E407500A733F3 /* Dot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		809965801D9F211500BB67F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80B196001E464B2E00CB1DB2 /* Shader+Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shader+Error.h"; sourceTree = "<group>"; };
@@ -920,6 +922,7 @@
 				808700E31D9F00EA00C1F26D /* Screen */,
 				808700E81D9F00EA00C1F26D /* Shader */,
 				808700F51D9F00EA00C1F26D /* SkyMain */,
+				808FB3DF1E48E04900A81A90 /* SkyTr3 */,
 				808700FF1D9F00EA00C1F26D /* Sound */,
 				808701041D9F00EA00C1F26D /* Thumb */,
 				808701161D9F00EA00C1F26D /* UIExtras */,
@@ -1162,10 +1165,7 @@
 		808701701D9F010E00C1F26D /* CPP */ = {
 			isa = PBXGroup;
 			children = (
-				805B23981E47DFFE0038CE5F /* color */,
-				805B23A91E47DFFE0038CE5F /* main */,
-				805B23B01E47DFFE0038CE5F /* pixel */,
-				805B23CF1E47DFFE0038CE5F /* time */,
+				808FB3DE1E48DD7E00A81A90 /* Sky */,
 				808701711D9F010E00C1F26D /* minizip */,
 				8087017B1D9F010E00C1F26D /* OSC */,
 			);
@@ -1452,6 +1452,26 @@
 				808702B51D9F093100C1F26D /* ParRegx.h */,
 			);
 			name = Par;
+			sourceTree = "<group>";
+		};
+		808FB3DE1E48DD7E00A81A90 /* Sky */ = {
+			isa = PBXGroup;
+			children = (
+				805B23CF1E47DFFE0038CE5F /* time */,
+				805B23B01E47DFFE0038CE5F /* pixel */,
+				805B23A91E47DFFE0038CE5F /* main */,
+				805B23981E47DFFE0038CE5F /* color */,
+			);
+			name = Sky;
+			sourceTree = "<group>";
+		};
+		808FB3DF1E48E04900A81A90 /* SkyTr3 */ = {
+			isa = PBXGroup;
+			children = (
+				808FB3E01E48E04900A81A90 /* SkyTr3.h */,
+				808FB3E11E48E04900A81A90 /* SkyTr3.mm */,
+			);
+			path = SkyTr3;
 			sourceTree = "<group>";
 		};
 		8092E4EA1D9E407500A733F3 = {
@@ -1798,6 +1818,7 @@
 				808701B51D9F010E00C1F26D /* unzip.c in Sources */,
 				8087012B1D9F00EA00C1F26D /* CubicPoly.cpp in Sources */,
 				805B23EA1E47DFFE0038CE5F /* FaceMap.cpp in Sources */,
+				808FB3E21E48E04900A81A90 /* SkyTr3.mm in Sources */,
 				808701B61D9F010E00C1F26D /* zip.c in Sources */,
 				8087014B1D9F00EA00C1F26D /* MuNavigationC.m in Sources */,
 				8087016D1D9F00EA00C1F26D /* UIImageRgbs.mm in Sources */,
@@ -1837,7 +1858,6 @@
 				805B23F21E47DFFE0038CE5F /* Adsr.cpp in Sources */,
 				808701671D9F00EA00C1F26D /* ThumbTwist.mm in Sources */,
 				8087024C1D9F015F00C1F26D /* Tr3Cache.cpp in Sources */,
-				8087015D1D9F00EA00C1F26D /* SkyMain+Patch.mm in Sources */,
 				8087012E1D9F00EA00C1F26D /* MenuChild.mm in Sources */,
 				8087024D1D9F015F00C1F26D /* Tr3Edge.cpp in Sources */,
 				805B23E11E47DFFE0038CE5F /* PalSet.cpp in Sources */,

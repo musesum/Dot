@@ -1,7 +1,7 @@
 
 #import "MuPalettePicker.h"
 #import "UIExtras.h"
-#import "SkyMain.h"
+#import "SkyTr3.h"
 #import "Pals.h"
 #import "Rgbs.h"
 #import "UIImageRgbs.h"
@@ -36,7 +36,7 @@
     int column = 0;
     int buttonSize = 64;
     
-    CellMain* cellMain = [SkyMain.shared cellMain]; 
+    CellMain* cellMain = [SkyTr3.shared cellMain];
     Pals* pals = &(cellMain->pic.pix.pals); 
     
     int columns = scrollFrame.size.width/buttonSize;
